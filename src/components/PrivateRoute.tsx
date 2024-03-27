@@ -20,8 +20,7 @@ const PrivateRoute: React.FC<PrivateRouteProps> = memo(({ children }) => {
   }, []);
 
   return !authState.checking && !authState.isAuthenticated ?
-    <Navigate to="/login" state={{ from: location }} replace /> :
-    children;
+    <Navigate to="/login" state={{ from: location }} replace /> : children;
 });
 
 export default PrivateRoute;

@@ -6,9 +6,10 @@ import PrivateRoute from './components/PrivateRoute';
 // Componentes carregados sob demanda
 const HomePage = lazy(() => import('./pages/HomePage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
-const PostsPage = lazy(() => import('./pages/PostsPage'));
-const UsersPage = lazy(() => import('./pages/UsersPage'));
-const ProductsPage = lazy(() => import('./pages/ProductsPage'));
+const PublicPage = lazy(() => import('./pages/PublicPage'));
+const PrivatePage = lazy(() => import('./pages/PrivatePage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
+// import NotFoundPage from './pages/NotFoundPage';
 
 const App: React.FC = () => {
   return (
@@ -17,24 +18,15 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/posts" element={<PostsPage />} />
-          <Route
-            path="/users"
+          <Route path="/public-page" element={<PublicPage />} />
+          <Route path="/private-page"
             element={
               <PrivateRoute>
-                <UsersPage />
+                <PrivatePage />
               </PrivateRoute>
             }
           />
-          <Route
-            path="/products"
-            element={
-              <PrivateRoute>
-                <ProductsPage />
-              </PrivateRoute>
-            }
-          />
-          {/* ... outras rotas */}
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
     </Router>

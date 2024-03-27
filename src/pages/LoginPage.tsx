@@ -1,21 +1,25 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
 
     axios.post('/api/login', { email, password })
-      .then(() => { navigate('/'); })
+      .then(() => {
+        navigate(from, { replace: true });
+      })
       .catch(error => {
         console.error('Erro ao realizar o login:', error);
-        setError('Email ou senha inválidos')
+        setError('Email ou senha inválidos');
       });
   };
 
