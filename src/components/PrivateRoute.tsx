@@ -12,15 +12,12 @@ const PrivateRoute: React.FC<PrivateRouteProps> = memo(({ children }) => {
 
   useEffect(() => {
     axios.get('/api/verify')
-      .then(() => { setAuthState({ checking: false, isAuthenticated: true }) })
-      .catch(error => {
-        setAuthState({ checking: false, isAuthenticated: false });
-        console.error('Erro ao autenticar o usuário:', error)
-      })
+      .then(() => { setAuthState({ checking: false, isAuthenticated: true }); })
+      .catch(() => { setAuthState({ checking: false, isAuthenticated: false }); });
   }, []);
 
-  return !authState.checking && !authState.isAuthenticated ?
-    <Navigate to="/login" state={{ from: location }} replace /> : children;
+  if (authState.checking) return null;
+  return authState.isAuthenticated ? children : <Navigate to="/login" state={{ from: location }} replace />;
 });
 
 export default PrivateRoute;

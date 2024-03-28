@@ -19,13 +19,11 @@ const App: React.FC = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/public-page" element={<PublicPage />} />
-          <Route path="/private-page"
-            element={
-              <PrivateRoute>
-                <PrivatePage />
-              </PrivateRoute>
-            }
-          />
+          <Route path="/private-page" element={
+            <PrivateRoute>
+              <PrivatePage />
+            </PrivateRoute>
+          } />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
