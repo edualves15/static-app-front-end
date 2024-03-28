@@ -3,13 +3,14 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import './api';
 import PrivateRoute from './components/PrivateRoute';
 
+// Componentes carregados com a aplicação
+import HomePage from './pages/HomePage';
+
 // Componentes carregados sob demanda
-const HomePage = lazy(() => import('./pages/HomePage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const PublicPage = lazy(() => import('./pages/PublicPage'));
 const PrivatePage = lazy(() => import('./pages/PrivatePage'));
-const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
-// import NotFoundPage from './pages/NotFoundPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 const App: React.FC = () => {
   return (
