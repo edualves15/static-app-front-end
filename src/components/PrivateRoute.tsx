@@ -1,6 +1,7 @@
-import React, { useEffect, useState, memo } from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
+import React, { memo, useEffect, useState } from 'react';
+import { Navigate, useLocation } from 'react-router-dom';
+import NavBar from './NavBar';
 
 interface PrivateRouteProps {
   children: React.ReactElement;
@@ -17,7 +18,7 @@ const PrivateRoute: React.FC<PrivateRouteProps> = memo(({ children }) => {
   }, []);
 
   if (authState.checking) return null;
-  return authState.isAuthenticated ? children : <Navigate to="/login" state={{ from: location }} replace />;
+  return authState.isAuthenticated ? (<><NavBar /> {children}</>) : (<Navigate to="/login" state={{ from: location }} replace />);
 });
 
 export default PrivateRoute;

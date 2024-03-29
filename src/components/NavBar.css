@@ -1,0 +1,23 @@
+.navBar-container {
+  height: auto;
+  min-width: 100px;
+  background-color: whitesmoke;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.navBar-logo {
+  flex: 1;
+}
+
+.navBar-logoutButton {
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+}

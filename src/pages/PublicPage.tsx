@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import PageWrapper from '../components/PageWrapper';
 
 type PublicItem = {
   id: number;
@@ -17,7 +18,7 @@ const PublicPage: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <PageWrapper>
       <h2>Ítens públicos</h2>
       {items && items.length > 0 ? (
         items.map(item => (
@@ -29,7 +30,7 @@ const PublicPage: React.FC = () => {
       ) : (
         <p>Nenhum item privado encontrado</p>
       )}
-    </div>
+    </PageWrapper>
   );
 };
 

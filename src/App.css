@@ -1,0 +1,28 @@
+/* Reset básico para remover margens padrão e definir box-sizing */
+html, body, #root, .App {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden; /* Previne rolagem horizontal indesejada */
+  height: 100%; /* Define altura para 100% para ambos */
+}
+*, *::before, *::after {
+  box-sizing: inherit; /* Herda box-sizing do elemento pai */
+}
+
+/* Define o html e o body para ocuparem 100% da altura e largura da janela do navegador */
+html, body {
+  width: 100%;
+  height: 100%;
+  /* Opcional: você pode querer adicionar alguma cor de fundo ou outras propriedades aqui */
+  /* background-color: #f0f0f0; */
+}
+
+/* Faz o elemento root ou .App ocupar 100% da altura e largura disponível */
+#root, .App {
+  min-height: 100%;
+  min-width: 100%;
+  /* Isso permite que você use flexbox ou outras propriedades de layout para organizar seus componentes */
+  display: flex;
+  flex-direction: column;
+}

@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import PageWrapper from '../components/PageWrapper';
+import './LoginPage.css'; // Importa o arquivo CSS para o componente
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -14,9 +16,7 @@ const LoginPage: React.FC = () => {
     e.preventDefault();
 
     axios.post('/api/login', { email, password })
-      .then(() => {
-        navigate(from, { replace: true });
-      })
+      .then(() => navigate(from, { replace: true }))
       .catch(error => {
         console.error('Erro ao realizar o login:', error);
         setError('Email ou senha inválidos');
@@ -24,34 +24,48 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <>
-      <div>
-        <h2>Login</h2>
-        <form onSubmit={handleLogin}>
-          <div>
-            <label htmlFor="email">E-mail:</label>
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <div>
-            <label htmlFor="password">Senha:</label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <button type="submit">Entrar</button>
-        </form>
+    <PageWrapper>
+      <div style={verticalCenterStyle}>
+        <div className="loginPage-container">
+          <h2 className="loginPage-header">Login</h2>
+          <form onSubmit={handleLogin} className="loginPage-form">
+            <div className="loginPage-inputGroup">
+              <label htmlFor="email" className="loginPage-label">E-mail:</label>
+              <input
+                type="email"
+                id="email"
+                className="loginPage-input"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className="loginPage-inputGroup">
+              <label htmlFor="password" className="loginPage-label">Senha:</label>
+              <input
+                type="password"
+                id="password"
+                className="loginPage-input"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <button type="submit" className="loginPage-button">Entrar</button>
+          </form>
+        </div>
+        {error && <p className="loginPage-error">{error}</p>}
       </div>
-      {error && <p>{error}</p>}
-    </>
+    </PageWrapper>
   );
+};
+
+// Estilo auxiliar para centralização vertical
+const verticalCenterStyle: React.CSSProperties = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center', // Centraliza verticalmente
+  minWidth: '100%',
+  minHeight: '100%',
 };
 
 export default LoginPage;

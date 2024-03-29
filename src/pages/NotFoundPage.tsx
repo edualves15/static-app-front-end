@@ -1,8 +1,11 @@
 import React from 'react';
+import PageWrapper from '../components/PageWrapper';
 
 const NotFoundPage: React.FC = () => {
   return (
-    <p>Página não encontrada</p>
+    <PageWrapper>
+      <h2>Página não encontrada</h2>
+    </PageWrapper>
   );
 };
 
