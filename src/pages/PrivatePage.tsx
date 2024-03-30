@@ -20,7 +20,7 @@ const PrivatePage: React.FC = () => {
 
   return (
     <PageWrapper>
-      <h2>Ítens privados</h2>
+      <h2>Itens privados</h2>
       {items.length > 0 ? (
         items.map(item => (
           <div key={item.id}>

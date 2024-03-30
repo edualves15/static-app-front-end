@@ -19,7 +19,7 @@ const PublicPage: React.FC = () => {
 
   return (
     <PageWrapper>
-      <h2>Ítens públicos</h2>
+      <h2>Itens públicos</h2>
       {items && items.length > 0 ? (
         items.map(item => (
           <div key={item.id}>
