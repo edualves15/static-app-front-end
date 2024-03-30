@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build && shx rm -rf ../back-end/static/dist && shx mkdir -p ../back-end/static/dist && shx cp -r dist/* ../back-end/static/dist",
+    "build": "tsc && vite build && shx rm -rf ../back-end/public && shx mkdir -p ../back-end/public && shx cp -r dist/* ../back-end/public",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },

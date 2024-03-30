@@ -10,17 +10,19 @@ type PublicItem = {
 
 const PublicPage: React.FC = () => {
   const [items, setItems] = useState<PublicItem[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     axios.get('/api/publicItems')
-      .then(response => setItems(response.data.data))
-      .catch(error => console.error('Erro ao buscar items públicos:', error));
+      .then(response => { setItems(response.data.data); })
+      .catch(error => console.error('Erro ao buscar items públicos:', error))
+      .finally(() => setLoading(false));
   }, []);
 
   return (
     <PageWrapper>
       <h2>Itens públicos</h2>
-      {items && items.length > 0 ? (
+      {loading ? null : items.length > 0 ? (
         items.map(item => (
           <div key={item.id}>
             <h3>{item.value1}</h3>
@@ -28,7 +30,7 @@ const PublicPage: React.FC = () => {
           </div>
         ))
       ) : (
-        <p>Nenhum item privado encontrado</p>
+        <p>Nenhum item público encontrado</p>
       )}
     </PageWrapper>
   );
