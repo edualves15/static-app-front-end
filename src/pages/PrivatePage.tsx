@@ -1,6 +1,6 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import PageWrapper from '../components/PageWrapper';
+import axios from 'axios';
 
 type PrivateItem = {
   id: number;
@@ -16,13 +16,13 @@ const PrivatePage: React.FC = () => {
   useEffect(() => {
     axios.get('/api/privateItems')
       .then(response => { setItems(response.data.data); })
-      .catch(error => console.error('Erro ao buscar items privados:', error))
+      .catch(error => console.error('Erro ao buscar itens privados:', error))
       .finally(() => setLoading(false));
   }, []);
 
   return (
     <PageWrapper>
-      <h2>Itens privados</h2>
+      <h2>Itens Privados</h2>
       {loading ? null : items.length > 0 ? (
         items.map(item => (
           <div key={item.id}>
@@ -32,7 +32,7 @@ const PrivatePage: React.FC = () => {
           </div>
         ))
       ) : (
-        <p>Nenhum item privado encontrado</p>
+        <p>Nenhum item privado encontrado.</p>
       )}
     </PageWrapper>
   );

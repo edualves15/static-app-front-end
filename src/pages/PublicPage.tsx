@@ -15,13 +15,13 @@ const PublicPage: React.FC = () => {
   useEffect(() => {
     axios.get('/api/publicItems')
       .then(response => { setItems(response.data.data); })
-      .catch(error => console.error('Erro ao buscar items públicos:', error))
+      .catch(error => console.error('Erro ao buscar itens públicos:', error))
       .finally(() => setLoading(false));
   }, []);
 
   return (
     <PageWrapper>
-      <h2>Itens públicos</h2>
+      <h2>Itens Públicos</h2>
       {loading ? null : items.length > 0 ? (
         items.map(item => (
           <div key={item.id}>
@@ -30,7 +30,7 @@ const PublicPage: React.FC = () => {
           </div>
         ))
       ) : (
-        <p>Nenhum item público encontrado</p>
+        <p>Nenhum item público encontrado.</p>
       )}
     </PageWrapper>
   );

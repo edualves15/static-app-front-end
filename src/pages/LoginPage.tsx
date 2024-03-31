@@ -2,7 +2,8 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import PageWrapper from '../components/PageWrapper';
-import './LoginPage.css'; // Importa o arquivo CSS para o componente
+import { useAuth } from '../context/AuthContext'; // Importe o hook useAuth
+import './LoginPage.css';
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -11,12 +12,16 @@ const LoginPage: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || '/';
+  const { login } = useAuth();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
 
     axios.post('/api/login', { email, password })
-      .then(() => navigate(from, { replace: true }))
+      .then(() => {
+        login(); // Chame login ao invés de apenas navegar
+        navigate(from, { replace: true });
+      })
       .catch(error => {
         console.error('Erro ao realizar o login:', error);
         setError('Email ou senha inválidos');
