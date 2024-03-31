@@ -33,6 +33,7 @@ const LoginPage: React.FC = () => {
       <div style={verticalCenterStyle}>
         <div className="loginPage-container">
           <h2 className="loginPage-header">Login</h2>
+          <p>e-mail: user1@email.com, senha: 123</p>
           <form onSubmit={handleLogin} className="loginPage-form">
             <div className="loginPage-inputGroup">
               <label htmlFor="email" className="loginPage-label">E-mail:</label>
